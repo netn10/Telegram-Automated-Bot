@@ -5,11 +5,12 @@ from config import *
 
 def telegram_bot_sendtext(chat_id ,bot_message, type):
     if type == "photo":
-        send_text = 'https://api.telegram.org/bot' + TOKEN + '/sendPhoto?chat_id=' + chat_id + '&parse_mode=Markdown&photo=' + bot_message + '&caption=חולצה 3ב10'
-
+        send_text = 'https://api.telegram.org/bot' + TOKEN + '/sendPhoto?chat_id=' + chat_id + '&parse_mode=Markdown&photo=' + bot_message
     if type == "text":
-        send_text = 'https://api.telegram.org/bot' + TOKEN + '/forwardMessage?chat_id=' + chat_id + '&from_chat_id=856757580&message_id=463'
-    
+        send_text = 'https://api.telegram.org/bot' + TOKEN + '/sendMessage?chat_id=' + chat_id + '&text=' + bot_message
+    if type == "post":
+        send_text = 'https://api.telegram.org/bot' + TOKEN + '/forwardMessage?chat_id=' + chat_id + bot_message
+
     response = requests.get(send_text)
 
     print("Sending... " + send_text)
